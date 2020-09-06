@@ -1,0 +1,70 @@
+.resultBlock {
+    text-align: center;
+    position: relative;
+    height: 300px;
+}
+.selectorBlock {
+    background-color: rgba(233, 233, 233, 0.5);
+    /* padding: 10px 20px 20px 20px; */
+    height: 600px;
+    width: 700px;
+    position: relative;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,.1);
+}
+.participant {
+    display: inline-block;
+    margin: 7px 10px;
+    line-height: 18px;
+    font-size: 18px;
+}
+.participantList {
+    position: absolute; 
+    bottom: 0; 
+    width: 100%;
+}
+.allParticipantList {
+    border-top: 1px solid rgba(255, 255, 255, 0.4);
+    padding-top: 10px;
+    background-color: rgb(46, 50, 54);
+}
+.result {
+    height: 300px;
+}
+
+#spinner {
+    width: 100%;
+    align-items: center;
+}
+#participantName {
+    padding-top: 40px;
+    vertical-align: middle;
+    align-items: center;
+    font-size: 50px;
+}
+.btn {
+    width: 100%;
+    position: absolute;
+    text-align: center;
+    margin-top: -3px;
+    border-top: 3px solid rgba(124, 126, 129, 0.5);
+}
+#selectBtn {
+    cursor: pointer;    
+}
+#selectBtn:hover {
+    cursor: pointer;
+    color: red;    
+}
+input[type=submit] {
+    border-radius: 5px;
+    border: 1px solid #fff;
+    color: #fff;
+    padding: 5px 30px;
+}
+input[type=text] {
+    font-size: 16px;
+}
+img#sound {
+    width: 700px;
+    height: auto;
+}
