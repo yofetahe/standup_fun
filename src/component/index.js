@@ -26,7 +26,6 @@ const Presenter = () => {
     const [allParticipant, setAllParticipant] = useState(participantsList);
     const [participants, setParticipants] = useState(activeParticipants);
     const [soundImage, setSoundImage] = useState(sound_1);
-    const [newParticipant, setNewParticipant] = useState([]);
     const [soundImages, setSoundImages] = useState(allSoundImages);
 
     const handleParticipantSelector = (e, index, checkedPart) => {
@@ -34,11 +33,11 @@ const Presenter = () => {
         if (participants.some(p => p === checkedPart)) {
             const part = participants.filter(p => p !== checkedPart);
             setParticipants(part);
-            document.querySelector("#part_"+index).setAttribute("class", "red close icon");
+            document.querySelector("#part_" + index).setAttribute("class", "red close icon");
         } else {
             const part = participants.concat(checkedPart);
             setParticipants(part);
-            document.querySelector("#part_"+index).setAttribute("class", "blue check square icon");
+            document.querySelector("#part_" + index).setAttribute("class", "blue check square icon");
         }
     }
 
@@ -50,16 +49,16 @@ const Presenter = () => {
         await sleep(500);
         document.querySelector('#sound').style.display = 'block';
         document.querySelector('#participantName').innerHTML = selectedParticipant;
-        const remainintPart = participants.filter(part => part !== selectedParticipant);
-        if (remainintPart.length === 0) {
+        const remainingPart = participants.filter(part => part !== selectedParticipant);
+        if (selectedParticipant === undefined) {
             document.querySelector('#selectBtn').style.display = 'none';
             document.querySelector('#participantName').innerHTML = '<span style=\'font-size: 16px\'>Now it is time for parking lot. Have a good day!!!</span>';
         }
-        setParticipants(remainintPart);
-        setSoundImage(soundBackground);        
+        setParticipants(remainingPart);
+        setSoundImage(soundBackground);
         const remainingSoundImages = soundImages.filter((i, index) => index !== soundBgSelectedIndex);
         setSoundImages(remainingSoundImages);
-        postSetup();        
+        postSetup();
     }
 
     const preSetup = () => {
@@ -79,21 +78,14 @@ const Presenter = () => {
         return new Promise(resolve => setTimeout(resolve, milliseconds))
     }
 
-    const handleNewParticipant = async(e) => {
+    const handleNewParticipant = async (e) => {
         e.preventDefault();
         const newPart = document.querySelector('#newParticipant').value;
-        console.log(newPart);
-        if (newPart.length !== 0 && !activeParticipants.some(part => part.toLowerCase() === newPart.toLowerCase())) {
-            
-            const updateNewPart = newParticipant.concat(newPart);
-            setNewParticipant(updateNewPart);
-            console.log('New size>>> ', updateNewPart.length);
-            const updateActivePart = [...activeParticipants, ...newParticipant];
-            setParticipants(updateActivePart);
-
-            const updateAllPart = [...allParticipant, ...newParticipant];
+        if (newPart.length !== 0 && !participants.some(part => part.toLowerCase() === newPart.toLowerCase())) {
+            const updatePart = [...participants, newPart];
+            setParticipants(updatePart);
+            const updateAllPart = [...allParticipant, newPart];
             setAllParticipant(updateAllPart);
-            
             document.querySelector('#newParticipant').value = '';
         }
     }
@@ -104,22 +96,24 @@ const Presenter = () => {
                 <div className='result'>
                     <img id='spinner' src={logo} className="App-logo" alt="logo" style={{ display: 'none' }} />
                     <img id='sound' src={soundImage} alt='sound' style={{ display: 'none' }} />
-                    <div id='participantName' className='selectedName'>Lets start our standup.</div>
+                    <div id='participantName' className='selectedName'>Let's start!</div>
                 </div>
             </div>
             <div className='btn'>
                 <Icon id='selectBtn' circular color='blue' name='play' onClick={handleSelection} />
             </div>
             <div className='participantList'>
-                {participants.map((part, index) => {
-                    return (
-                        <div key={index} className='participant'> <Icon color='teal' name='user' />{part}</div>
-                    );
-                })}
+                <div>
+                    {participants.map((part, index) => {
+                        return (
+                            <div key={index} className='participant'> <Icon color='teal' name='user' />{part}</div>
+                        );
+                    })}
+                </div>
                 <div className='allParticipantList'>
                     {allParticipant.sort((a, b) => {
                         if (a > b) { return 1 }
-                        if (a < b) { return -1}
+                        if (a < b) { return -1 }
                         return 0;
                     }).map((part, index) => {
                         return (

@@ -1,15 +1,16 @@
+.selectorBlock {
+    background-color: rgba(233, 233, 233, 0.5);
+    /* padding: 10px 20px 20px 20px; */
+    min-height: 700px;
+    width: 400px;
+    position: relative;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,.1);
+    z-index: 0;
+}
 .resultBlock {
     text-align: center;
     position: relative;
     height: 300px;
-}
-.selectorBlock {
-    background-color: rgba(233, 233, 233, 0.5);
-    /* padding: 10px 20px 20px 20px; */
-    height: 700px;
-    width: 400px;
-    position: relative;
-    box-shadow: 0 0 10px 0 rgba(0,0,0,.1);
 }
 .participant {
     display: inline-block;
@@ -21,6 +22,7 @@
     position: absolute; 
     bottom: 0; 
     width: 100%;
+    z-index: 1;
 }
 .allParticipantList {
     border-top: 1px solid rgba(255, 255, 255, 0.4);
@@ -50,6 +52,7 @@
     text-align: center;
     margin-top: -3px;
     border-top: 3px solid rgba(124, 126, 129, 0.5);
+    z-index: 1000;
 }
 #selectBtn {
     cursor: pointer;    
