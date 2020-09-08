@@ -9,13 +9,17 @@ import sound_6 from '../images/sound_6.gif';
 import sound_7 from '../images/sound_7.gif';
 import sound_8 from '../images/sound_8.gif';
 import sound_9 from '../images/sound_9.gif';
+import sound_10 from '../images/sound_10.gif';
+import sound_11 from '../images/sound_11.gif';
+import sound_12 from '../images/sound_12.gif';
+
 
 import './index.css';
 import { Icon } from 'semantic-ui-react';
 
 const participantsList = ['Paul Filmalter', 'Lu Ouyang', 'Tanvi Parikh', 'Harman Ahluwalia', 'Yofetahe Habtu', 'Wendy Wang', 'Qazi Zaahirah', 'Aditya Lakshmi', 'Kaiser Iqbal'];
 const activeParticipants = [...participantsList];
-const soundImages = [sound_1, sound_2, sound_3, sound_4, sound_5, sound_6, sound_7, sound_8, sound_9];
+const allSoundImages = [sound_1, sound_2, sound_3, sound_4, sound_5, sound_6, sound_7, sound_8, sound_9, sound_10, sound_11, sound_12];
 
 const Presenter = () => {
 
@@ -23,6 +27,7 @@ const Presenter = () => {
     const [participants, setParticipants] = useState(activeParticipants);
     const [soundImage, setSoundImage] = useState(sound_1);
     const [newParticipant, setNewParticipant] = useState([]);
+    const [soundImages, setSoundImages] = useState(allSoundImages);
 
     const handleParticipantSelector = (e, index, checkedPart) => {
         e.preventDefault();
@@ -40,7 +45,8 @@ const Presenter = () => {
     const handleSelection = async () => {
         preSetup();
         const selectedParticipant = participants[Math.floor(Math.random() * participants.length)];
-        const soundBackground = soundImages[Math.floor(Math.random() * soundImages.length)];
+        const soundBgSelectedIndex = Math.floor(Math.random() * soundImages.length);
+        const soundBackground = soundImages[soundBgSelectedIndex];
         await sleep(500);
         document.querySelector('#sound').style.display = 'block';
         document.querySelector('#participantName').innerHTML = selectedParticipant;
@@ -50,8 +56,10 @@ const Presenter = () => {
             document.querySelector('#participantName').innerHTML = '<span style=\'font-size: 16px\'>Now it is time for parking lot. Have a good day!!!</span>';
         }
         setParticipants(remainintPart);
-        setSoundImage(soundBackground);
-        postSetup();
+        setSoundImage(soundBackground);        
+        const remainingSoundImages = soundImages.filter((i, index) => index !== soundBgSelectedIndex);
+        setSoundImages(remainingSoundImages);
+        postSetup();        
     }
 
     const preSetup = () => {
@@ -82,7 +90,7 @@ const Presenter = () => {
             console.log('New size>>> ', updateNewPart.length);
             const updateActivePart = [...activeParticipants, ...newParticipant];
             setParticipants(updateActivePart);
-            
+
             const updateAllPart = [...allParticipant, ...newParticipant];
             setAllParticipant(updateAllPart);
             
@@ -96,7 +104,7 @@ const Presenter = () => {
                 <div className='result'>
                     <img id='spinner' src={logo} className="App-logo" alt="logo" style={{ display: 'none' }} />
                     <img id='sound' src={soundImage} alt='sound' style={{ display: 'none' }} />
-                    <div id='participantName' className='selectedName'></div>
+                    <div id='participantName' className='selectedName'>Lets start our standup.</div>
                 </div>
             </div>
             <div className='btn'>
