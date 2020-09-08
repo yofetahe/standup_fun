@@ -1,0 +1,36 @@
+{
+  "files": {
+    "main.css": "/standup_fun/static/css/main.b52cec10.chunk.css",
+    "main.js": "/standup_fun/static/js/main.46caa621.chunk.js",
+    "main.js.map": "/standup_fun/static/js/main.46caa621.chunk.js.map",
+    "runtime-main.js": "/standup_fun/static/js/runtime-main.ad30bf72.js",
+    "runtime-main.js.map": "/standup_fun/static/js/runtime-main.ad30bf72.js.map",
+    "static/css/2.c132a2ce.chunk.css": "/standup_fun/static/css/2.c132a2ce.chunk.css",
+    "static/js/2.77dc88a7.chunk.js": "/standup_fun/static/js/2.77dc88a7.chunk.js",
+    "static/js/2.77dc88a7.chunk.js.map": "/standup_fun/static/js/2.77dc88a7.chunk.js.map",
+    "index.html": "/standup_fun/index.html",
+    "precache-manifest.3051fb3c1379f8af8928814f58627ad1.js": "/standup_fun/precache-manifest.3051fb3c1379f8af8928814f58627ad1.js",
+    "service-worker.js": "/standup_fun/service-worker.js",
+    "static/css/2.c132a2ce.chunk.css.map": "/standup_fun/static/css/2.c132a2ce.chunk.css.map",
+    "static/css/main.b52cec10.chunk.css.map": "/standup_fun/static/css/main.b52cec10.chunk.css.map",
+    "static/js/2.77dc88a7.chunk.js.LICENSE.txt": "/standup_fun/static/js/2.77dc88a7.chunk.js.LICENSE.txt",
+    "static/media/semantic.min.css": "/standup_fun/static/media/outline-icons.ef60a4f6.woff",
+    "static/media/logo.svg": "/standup_fun/static/media/logo.5d5d9eef.svg",
+    "static/media/sound_1.gif": "/standup_fun/static/media/sound_1.f4ddfc1d.gif",
+    "static/media/sound_2.gif": "/standup_fun/static/media/sound_2.74756796.gif",
+    "static/media/sound_3.gif": "/standup_fun/static/media/sound_3.ce634a6f.gif",
+    "static/media/sound_4.gif": "/standup_fun/static/media/sound_4.7b4404f5.gif",
+    "static/media/sound_5.gif": "/standup_fun/static/media/sound_5.8a17bddf.gif",
+    "static/media/sound_6.gif": "/standup_fun/static/media/sound_6.acf57c98.gif",
+    "static/media/sound_7.gif": "/standup_fun/static/media/sound_7.e1ee14a3.gif",
+    "static/media/sound_8.gif": "/standup_fun/static/media/sound_8.393a3ea0.gif",
+    "static/media/sound_9.gif": "/standup_fun/static/media/sound_9.dac03de3.gif"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.ad30bf72.js",
+    "static/css/2.c132a2ce.chunk.css",
+    "static/js/2.77dc88a7.chunk.js",
+    "static/css/main.b52cec10.chunk.css",
+    "static/js/main.46caa621.chunk.js"
+  ]
+}
