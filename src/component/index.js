@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import logo from '../logo.svg';
 import sound_1 from '../images/sound_1.gif';
 import sound_2 from '../images/sound_2.gif';
@@ -13,9 +13,9 @@ import sound_10 from '../images/sound_10.gif';
 import sound_11 from '../images/sound_11.gif';
 import sound_12 from '../images/sound_12.gif';
 
-
 import './index.css';
-import { Icon } from 'semantic-ui-react';
+import { Icon, Button } from 'semantic-ui-react';
+// import * as ApiUrl from './api';
 
 const participantsList = ['Paul Filmalter', 'Lu Ouyang', 'Tanvi Parikh', 'Harman Ahluwalia', 'Yofetahe Habtu', 'Wendy Wang', 'Qazi Zaahirah', 'Aditya Lakshmi', 'Kaiser Iqbal'];
 const activeParticipants = [...participantsList];
@@ -27,6 +27,16 @@ const Presenter = () => {
     const [participants, setParticipants] = useState(activeParticipants);
     const [soundImage, setSoundImage] = useState(sound_1);
     const [soundImages, setSoundImages] = useState(allSoundImages);
+    const [allPartVisible, setAllPartVisible] = useState('none');
+    const [partVisible, setPartVisible] = useState('block');
+    // const [images, setImages] = useState([]);
+    // const [selectedBgImage, setSelectedBgImage] = useState();
+
+    // useEffect(() => {
+    //     fetch(ApiUrl.API_URL)
+    //     .then(res => res.json())
+    //     .then(data => setImages(data));
+    // }, []);
 
     const handleParticipantSelector = (e, index, checkedPart) => {
         e.preventDefault();
@@ -45,7 +55,9 @@ const Presenter = () => {
         preSetup();
         const selectedParticipant = participants[Math.floor(Math.random() * participants.length)];
         const soundBgSelectedIndex = Math.floor(Math.random() * soundImages.length);
-        const soundBackground = soundImages[soundBgSelectedIndex];
+        const soundBackground = soundImages[soundBgSelectedIndex];//.urls.small;
+        // const selectedBg = images[soundBgSelectedIndex].urls.small;
+        // setSelectedBgImage(selectedBg);
         await sleep(500);
         document.querySelector('#sound').style.display = 'block';
         document.querySelector('#participantName').innerHTML = selectedParticipant;
@@ -78,7 +90,7 @@ const Presenter = () => {
         return new Promise(resolve => setTimeout(resolve, milliseconds))
     }
 
-    const handleNewParticipant = async (e) => {
+    const handleNewParticipant = (e) => {
         e.preventDefault();
         const newPart = document.querySelector('#newParticipant').value;
         if (newPart.length !== 0 && !participants.some(part => part.toLowerCase() === newPart.toLowerCase())) {
@@ -90,6 +102,11 @@ const Presenter = () => {
         }
     }
 
+    const handleAllParticipantVisibility = () => {
+        (allPartVisible === 'none') ? setAllPartVisible('block') : setAllPartVisible('none');
+        (allPartVisible === 'none') ? setPartVisible('none') : setPartVisible('block');
+    }
+    // style={{backgroundImage: `url(${selectedBgImage})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', backgroundColor: 'rgba(233, 233, 233, 0.8)'}}
     return (
         <div className='selectorBlock'>
             <div className='resultBlock'>
@@ -100,17 +117,22 @@ const Presenter = () => {
                 </div>
             </div>
             <div className='btn'>
-                <Icon id='selectBtn' circular color='blue' name='play' onClick={handleSelection} />
+                <Icon id='selectBtn' color='blue' size='large' name='chevron circle right' onClick={handleSelection} />
             </div>
             <div className='participantList'>
-                <div>
+                <div style={{ display: partVisible }}>
                     {participants.map((part, index) => {
                         return (
                             <div key={index} className='participant'> <Icon color='teal' name='user' />{part}</div>
                         );
                     })}
                 </div>
-                <div className='allParticipantList'>
+
+                <Button icon onClick={handleAllParticipantVisibility}>
+                    <Icon name={allPartVisible === 'none' ? 'angle double up' : 'angle double down'} />
+                </Button>
+
+                <div className='allParticipantList' style={{ display: allPartVisible }}>
                     {allParticipant.sort((a, b) => {
                         if (a > b) { return 1 }
                         if (a < b) { return -1 }
