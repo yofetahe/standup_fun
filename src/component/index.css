@@ -10,7 +10,7 @@
 .resultBlock {
     text-align: center;
     position: relative;
-    height: 400px;
+    height: 350px;
 }
 .participant {
     display: inline-block;
@@ -58,7 +58,7 @@
 }
 #selectBtn:hover {
     cursor: pointer;
-    color: red;    
+    color: teal;    
 }
 input[type=submit] {
     border-radius: 5px;

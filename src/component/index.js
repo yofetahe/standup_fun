@@ -1,31 +1,21 @@
 import React, { useState } from 'react'
 import logo from '../logo.svg';
-import sound_1 from '../images/sound_1.gif';
-import sound_2 from '../images/sound_2.gif';
-import sound_3 from '../images/sound_3.gif';
-import sound_4 from '../images/sound_4.gif';
-import sound_5 from '../images/sound_5.gif';
-import sound_6 from '../images/sound_6.gif';
-import sound_7 from '../images/sound_7.gif';
-import sound_8 from '../images/sound_8.gif';
-import sound_9 from '../images/sound_9.gif';
-import sound_10 from '../images/sound_10.gif';
-import sound_11 from '../images/sound_11.gif';
-import sound_12 from '../images/sound_12.gif';
 
 import './index.css';
-import { Icon, Button } from 'semantic-ui-react';
+import { Icon, Button, Divider, Input } from 'semantic-ui-react';
+import { soundImages, initial_image } from './sounds';
+import Participants from './participant.json';
 // import * as ApiUrl from './api';
 
-const participantsList = ['Paul Filmalter', 'Lu Ouyang', 'Tanvi Parikh', 'Harman Ahluwalia', 'Yofetahe Habtu', 'Wendy Wang', 'Qazi Zaahirah', 'Aditya Lakshmi', 'Kaiser Iqbal'];
+const participantsList = Object.values(Participants);
 const activeParticipants = [...participantsList];
-const allSoundImages = [sound_1, sound_2, sound_3, sound_4, sound_5, sound_6, sound_7, sound_8, sound_9, sound_10, sound_11, sound_12];
+const allSoundImages = soundImages;
 
 const Presenter = () => {
 
     const [allParticipant, setAllParticipant] = useState(participantsList);
     const [participants, setParticipants] = useState(activeParticipants);
-    const [soundImage, setSoundImage] = useState(sound_1);
+    const [soundImage, setSoundImage] = useState(initial_image);
     const [soundImages, setSoundImages] = useState(allSoundImages);
     const [allPartVisible, setAllPartVisible] = useState('none');
     const [partVisible, setPartVisible] = useState('block');
@@ -106,6 +96,11 @@ const Presenter = () => {
         (allPartVisible === 'none') ? setAllPartVisible('block') : setAllPartVisible('none');
         (allPartVisible === 'none') ? setPartVisible('none') : setPartVisible('block');
     }
+
+    const handleSaveNewParticipants = (event) => {
+        event.preventDefault();
+        console.log('save logic need to implement');
+    }
     // style={{backgroundImage: `url(${selectedBgImage})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', backgroundColor: 'rgba(233, 233, 233, 0.8)'}}
     return (
         <div className='selectorBlock'>
@@ -117,7 +112,7 @@ const Presenter = () => {
                 </div>
             </div>
             <div className='btn'>
-                <Icon id='selectBtn' color='blue' size='large' name='chevron circle right' onClick={handleSelection} />
+                <Icon id='selectBtn' size='large' name='chevron circle right' onClick={handleSelection} />
             </div>
             <div className='participantList'>
                 <div style={{ display: partVisible }}>
@@ -144,9 +139,12 @@ const Presenter = () => {
                             </div>
                         );
                     })}
+                    <Divider />
                     <div>
-                        <input id='newParticipant' type='text' /> <Icon id='selectBtn' color='blue' name='add' onClick={(e) => handleNewParticipant(e)} />
-                    </div>
+                        <Input placeholder='Participant Name' id='newParticipant' />
+                        <Icon id='selectBtn' name='add' onClick={(e) => handleNewParticipant(e)} /> 
+                        <Icon name='save' disabled onClick={(e) => handleSaveNewParticipants(e)} />
+                    </div>                   
                 </div>
             </div>
         </div>
